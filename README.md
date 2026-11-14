@@ -18,6 +18,12 @@ files so the whole pipeline is runnable in one command.
 Embeddings pick the candidates; the reranker puts the best passage first so a weak
 retriever does not poison the answer. Only the top passages reach the chat model.
 
+## Why SIE
+
+One API for the encoder, the reranker and the chat model. The same three calls run
+against SIE Serverless or a self-hosted SIE Cluster, so the pipeline does not change
+when the corpus grows from a handful of files to the real pile.
+
 ## Setup
 
 ```bash
@@ -55,6 +61,8 @@ plan [pricing.md].
   swap in a vector store; the `/v1/encode` and `/v1/score` calls stay the same.
 - `RETRIEVE_K` and `RERANK_K` at the top of `ask.py` control how many candidates
   reach the reranker and the chat model.
+- Next step: run `docling` over the PDFs to get markdown, so the same
+  embed / rerank / answer pipeline covers the whole pile, not just the `.md` files.
 - Point `SIE_BASE_URL` at a self-hosted SIE Cluster and the same three calls run
   there, which is the plan once the volume justifies it.
 
