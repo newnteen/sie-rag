@@ -61,8 +61,9 @@ plan [pricing.md].
   swap in a vector store; the `/v1/encode` and `/v1/score` calls stay the same.
 - `RETRIEVE_K` and `RERANK_K` at the top of `ask.py` control how many candidates
   reach the reranker and the chat model.
-- Next step: run `docling` over the PDFs to get markdown, so the same
-  embed / rerank / answer pipeline covers the whole pile, not just the `.md` files.
+- Next step: put the scanned PDFs through LightOnOCR-3 on SIE to get Markdown, so
+  the same embed / rerank / answer pipeline covers the whole pile, not just the
+  `.md` files.
 - Point `SIE_BASE_URL` at a self-hosted SIE Cluster and the same three calls run
   there, which is the plan once the volume justifies it.
 
